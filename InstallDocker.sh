@@ -23,7 +23,7 @@ else
 			echo "docker compose est déja installée"
 		else 
 			if (whiptail --title "installation de docker-compose" --yesno "voulez vous installer docker-compose ?" 10 60) then
-				apt-get docker compose
+				apt-get install docker-compose
 			else
 				echo "au revoir !!"
 				exit 0
