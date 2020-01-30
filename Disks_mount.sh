@@ -95,13 +95,13 @@ else
 	if [ -e md0 ];then
 		cd --
 		if [ -d /data ];then 
-			mount /dev/md0 /data
+			#mount /dev/md0 /data
 			echo "répertoire data existant"
 			echo "/dev/md0	/data	ext4	defaults	0	1">>/etc/fstab
 			echo "création et montage de md0 effectué ... création de md1"
 		else
 			mkdir /data
-			mount /dev/md0 /data
+			#mount /dev/md0 /data
 			echo "répertoire data créer"
 			echo "/dev/md0  /data   ext4    defaults        0       1">>/etc/fstab
 			echo "création et montage de md0 effectué ... création de md1"
@@ -115,7 +115,7 @@ else
 	mdadm --verbose --create /dev/md1 --level=5 --raid-devices=2 /dev/sdd1 /dev/sde1
         mdadm --daemonise /dev/md1
 	mdadm --monitor --daemonise /dev/md1
-        mkfs -t ext4 /dev/md1
+        mkfs.ext4 /dev/md1
 	cd /dev
         if [ -e md1 ];then
 		cd --
@@ -151,9 +151,9 @@ else
 		echo "renomage de vol4 en media2"
 		lvrename vol3 media
 		lvrename vol4 media2
-		mkfs -t ext4 /dev/mvg/vol1
-		mkfs -t ext4 /dev/mvg/vol2
-		mkfs -t ext4 /dev/mvg/media
+		mkfs.ext4 /dev/mvg/vol1
+		mkfs.ext4 /dev/mvg/vol2
+		mkfs.ext4 /dev/mvg/media
 		mkfs.ext4 /dev/mvg/vol4
 		echo "verification de l'existance des différents dossier de montage ..."
 		if [ -d /mnt/share/ ];then
